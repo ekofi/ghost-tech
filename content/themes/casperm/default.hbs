@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+
+    {{!-- Basic meta - advanced meta is output with {ghost_head} below --}}
+    <title>{{meta_title}}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="twitter:image" content="https://techinterview.coach/images/meta-image.webp" />
+    <meta property="og:image" content="https://techinterview.coach/images/meta-image.webp" />
+
+    {{!-- Theme assets - use the {asset} helper to reference styles & scripts,
+    this will take care of caching and cache-busting automatically --}}
+    <link rel="stylesheet" type="text/css" href="https://techinterview.coach/blog/assets/built/screen.css" />
+    <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+
+    <script src="https://kit.fontawesome.com/a54708e242.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="https://i.imgur.com/s6W4oGV.png" type="image/png"></link>
+    {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings,
+    it should always be the last tag before the closing head tag --}}
+    <link rel="canonical" href="https://techinterview.coach/{{url}}/">
+    <link rel="amphtml" href="https://techinterview.coach/{{url}}/amp/">
+    <meta property="og:url" content="https://techinterview.coach/{{url}}/">
+    <meta name="twitter:image" content="https://res-2.cloudinary.com/hanjmc5qo/image/upload/q_auto/v1/ghost-blog-images/Andrea-v2.jpg">
+    {{ghost_head}}
+
+</head>
+<body class="{{body_class}}">
+<div class="viewport">
+<script src="https://apps.elfsight.com/p/platform.js"></script>
+<div class="elfsight-app-f01b3213-1398-4be3-8976-4a0dc5409b9f" style="right: 50px"></div>
+    <header id="gh-head" class="gh-head {{#if @site.cover_image}}has-cover{{/if}}">
+        <nav class="gh-head-inner inner gh-container">
+
+            <div class="gh-head-brand">
+                <a class="gh-head-logo impp" href="https://techinterview.coach">
+                    {{#if @site.logo}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}" />
+                    {{else}}
+                        {{@site.title}}
+                    {{/if}}
+                </a>
+                <a class="gh-burger" role="button">
+                    <div class="gh-burger-box">
+                        <div class="gh-burger-inner"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="gh-head-menu simpp">
+                <li class="nav-logo logo-margin nac-v" style="list-style-type: none;">
+                    <a href="https://techinterview.coach"  rel="noopener"><img data-rjs="https://d33wubrfki0l68.cloudfront.net/1b12c17cbedd6215c7bb082fcbc5d398e31710b4/a0aaf/images/logo-white.webp" alt="Pofo" class="logo-light default" data-rjs-processed="true" src="https://d33wubrfki0l68.cloudfront.net/1b12c17cbedd6215c7bb082fcbc5d398e31710b4/a0aaf/images/logo-white.webp" loading="lazy" style="max-height: 26px;"></a>
+                </li>
+                {{navigation}}
+            </div>
+            <div class="gh-head-actions">
+                <div class="gh-social">
+                    {{#if @site.facebook}}
+                        <a class="gh-social-facebook" href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
+                    {{/if}}
+                    {{#if @site.twitter}}
+                        <a class="gh-social-twitter" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
+                    {{/if}}
+                </div>
+
+                {{#unless @member}}
+                    <a class="gh-head-button" id="calendyButton"><button type="button" style="background-color: white">Book Now</button></a>
+                {{else}}
+                    <a class="gh-head-button" href="#/portal/account">Account</a>
+                {{/unless}}
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {{!-- All other templates get inserted here, index.hbs, post.hbs, etc --}}
+        {{{body}}}
+    </main>
+
+    {{!-- The global footer at the very bottom of the screen --}}
+    <footer class="site-footer outer">
+        <div class="inner only-pc-inner btt special textaleft">
+            <section class="copyright only-pc col-md-6 marginbottom50"><ul class="nav" style="border-bottom: 1px solid #dee2e6!important;padding-bottom: 20px; border-color: #363636!important;">
+                <a style="color: white; font-size: 2rem; letter-spacing: -.015em; font-weight: 500;" class="font-footer-header" >Contact Us</a>
+                <div class="font-footer" style="padding-top: 15px;">Applying at FAANG or an exciting startup? 💻
+                <br />
+                We'll tell you what questions to expect, how to answer them,<br/> and provide you with feedback you can apply immediately.
+                <br/>
+                Email: <a href="mailto:hello@techinterview.coach" target="_blank" rel="noopener" style="color: rgb(0, 100, 164);">hello@techinterview.coach</a>
+                <br />
+                Find us on <a href="https://wa.me/447575171999" target="_blank" rel="noopener" style="color: rgb(0, 100, 164);"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></div>
+                </ul></section>
+            <nav class="site-footer-nav only-pc col-md-6 marginbottom50">
+                {{navigation type="secondary"}}
+                <a style="color: white; font-size: 2rem; letter-spacing: -.015em; font-weight: 500;" class="font-footer-header">Latest Posts</a>
+                {{#get "posts" limit="5" include="tags,authors"}}
+    {{#foreach posts}}
+        <div class="font-footer" style="display: grid; border-bottom: 1px solid #dee2e6!important;padding-bottom: 15px; border-color: #363636!important; padding-top: 15px;"><a style="color: rgb(0, 100, 164);" href="{{slug}}">{{#if feature_image}}
+    {{!-- This is a responsive image, it loads different sizes depending on device
+    https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+    <img
+        srcset="{{img_url feature_image size="s"}} 300w,
+                {{img_url feature_image size="m"}} 600w,
+                {{img_url feature_image size="l"}} 1000w,
+                {{img_url feature_image size="xl"}} 2000w"
+        sizes="(max-width: 800px) 400px,
+            (max-width: 1170px) 1170px,
+                2000px"
+        src="{{img_url feature_image size="s"}}"
+        alt="{{title}}"
+        style="max-width: 12% !important; padding-right:10px"
+    />
+{{/if}} {{title}}</a><span style="text-align: left;">{{date}} | By {{authors}}</span></div>
+    {{/foreach}}
+{{/get}}
+
+            </nav>
+            <nav class="site-footer-nav only-pc col-md-6 marginbottom50"><a style="color: white; font-size: 2rem; letter-spacing: -.015em; font-weight: 500;" class="font-footer-header">Featured Posts</a>
+                {{#get "posts" filter="featured:true" limit="5" include="tags,authors"}}
+    {{#foreach posts}}
+        <div class="font-footer" style="display: grid; border-bottom: 1px solid #dee2e6!important;padding-bottom: 15px; border-color: #363636!important; padding-top: 15px;"><a style="color: rgb(0, 100, 164);" href="{{slug}}">{{#if feature_image}}
+    {{!-- This is a responsive image, it loads different sizes depending on device
+    https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+    <img
+        srcset="{{img_url feature_image size="s"}} 300w,
+                {{img_url feature_image size="m"}} 600w,
+                {{img_url feature_image size="l"}} 1000w,
+                {{img_url feature_image size="xl"}} 2000w"
+        sizes="(max-width: 800px) 400px,
+            (max-width: 1170px) 1170px,
+                2000px"
+        src="{{img_url feature_image size="s"}}"
+        alt="{{title}}"
+        style="max-width: 12% !important; padding-right:10px"
+    />
+{{/if}} {{title}}</a><span style="text-align: left;">{{date}} | By {{authors}}</span></div>{{else}}<a style="padding-top: 15px;">There are currently no featured posts! :)</a>
+    {{/foreach}}
+{{/get}}</a></div>
+        </nav>
+        <div class="border-top brdr" style="text-align: center; font-size: 1.3rem;"><a href="https://techinterview.coach/blog">{{@site.title}}</a> &copy; {{date format="YYYY"}}</div>
+    </footer>
+
+</div>
+{{!-- /.viewport --}}
+
+<a class="scroll-top-arrow" href="javascript:void(0);"><i class="ti-arrow-up"></i></a>
+{{!-- Scripts - handle member signups, responsive videos, infinite scroll, floating headers, and galleries --}}
+<script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous">
+</script>
+<script src="https://tech-interview-coaching.herokuapp.com/blog/assets/built/casper.js"></script>
+<script>
+$(document).ready(function () {
+    // Mobile Menu Trigger
+    $('.gh-burger').click(function () {
+        $('body').toggleClass('gh-head-open');
+    });
+    // FitVids - Makes video embeds responsive
+    $(".gh-content").fitVids();
+});
+</script>
+
+{{!-- Ghost outputs required functional scripts with this tag - it should always be the last thing before the closing body tag --}}
+{{ghost_foot}}
+<style type="text/css" media="screen">
+  .calendly-badge-widget {
+    right: 137px;
+    bottom: 20px;
+    position: fixed;
+    z-index: 9998;
+  }
+  .font-footer {
+    font-family: "Roboto", sans-serif;
+  }
+  .font-footer-header {
+    font-family: "Montserrat", sans-serif;
+  }
+  .calendly-badge-widget .calendly-badge-content {
+    height: 40px;
+    display: table-cell;
+    width: auto;
+    padding: 0 30px;
+    border-radius: 25px;
+    box-shadow: rgb(0 0 0 / 25%) 0 2px 5px;
+    font-family: sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .brdr {
+      border-top: 1px solid #dee2e6!important;
+    border-color: #363636!important;
+    padding-top: 30px;
+  }
+  .btt {
+    padding-bottom: 30px;
+  }
+  .eapp-whatsapp-chat-root-layout-component {
+    display: none;
+    position: relative;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media only screen and (max-width: 600px) {
+   .eapp-whatsapp-chat-root-layout-component {
+    z-index: 9998;
+   }
+  }
+  @media only screen and (min-width: 991px) {
+   .only-pc {
+    flex: 0 0 30.333333%;
+    max-width: 30.333333%;
+   }
+   .only-pc-inner {
+    display: flex !important;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+   }
+  }
+  @media only screen and (min-width: 991px) {
+   .nac-v {
+    display: none !important;
+   }
+   .impp {
+    display: block !important;
+}
+.simpp {
+    margin-left: 15.5vmin !important;
+}
+  }
+  @media only screen and (max-width: 991px) {
+   .nac-vi {
+    display: none !important;
+   }
+   .simpp {
+       margin-left: 0 !important;
+   }
+  }
+  @media only screen and (min-width: 768px) and (max-width: 991px){
+.col-md-6 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+}
+.special {
+ display: flex !important;
+ max-width: 750px !important;
+}}
+@media only screen and (min-width: 768px){
+.textaleft {
+    text-align: left !important;
+}
+@media only screen and (max-width: 991px){
+.marginbottom50 {
+    margin-bottom: 50px !important;
+}
+}
+  @media only screen and (max-width: 991px) {
+   .only-pc {
+    padding-bottom: 30px;
+   }
+   .only-pc-inner {
+    flex-wrap: wrap;
+    display: grid;
+   }
+  }
+  .icon-very-small {
+    font-size: 16px;
+  }
+  .margin-5px-right {
+    margin-right: 5px;
+  }
+  .no-margin-left {
+   margin-left: 0!important;
+  }
+}
+  .hmOmSj {
+    box-shadow: rgb(0 0 0 / 10%) 0px 12px 24px 0px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    touch-action: none;
+    visibility: hidden;
+    transition: opacity 0.3s ease 0s, margin 0.3s ease 0s, visibility 0.3s ease 0s;
+    background-color: rgb(255, 255, 255);
+    transform: translate3d(0px, 0px, 0px);
+    margin-bottom: 60px;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: auto;
+    margin-right: 20px;
+}
+
+.logo-margin {
+    margin-right: 18vmin;
+}
+@media only screen and (max-width: 991px) {
+   .logo-margin {
+    margin-right: 0;
+   }
+  }
+</style>
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+<script>
+      window.onload = () => {Calendly.initBadgeWidget({
+      url: "https://calendly.com/dellacorte/15min",
+      text: '<i class="fas fa-calendar icon-very-small margin-5px-right no-margin-left" aria-hidden="true"></i> Book',
+      color: 'rgb(0, 100, 164)',
+      textColor: '#ffffff',
+      branding: false })}</script>
+<!-- Calendly badge widget end -->
+<script>
+    var calendyButton = document.getElementById('calendyButton');
+        calendyButton.addEventListener("click", function() {
+            Calendly.initPopupWidget({ url: 'https://calendly.com/dellacorte/15min' });
+     return false;
+     })
+</script>
+<div>
+    <div style="display: block;" class="eapp-whatsapp-chat-root-layout-component eapps-whatsapp-chat-f01b3213-1398-4be3-8976-4a0dc5409b9f-custom-css-hook" id="portal-f01b3213-1398-4be3-8976-4a0dc5409b9f">
+    </div>
+</body>
+</html>

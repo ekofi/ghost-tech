@@ -1,0 +1,137 @@
+{{!< default}}
+
+{{!-- The tag above means: insert everything in this file
+into the {body} tag of the default.hbs template --}}
+
+
+{{#post}}
+{{!-- Everything inside the #post block pulls data from the post --}}
+
+<article class="article {{post_class}}" style="padding-bottom: 0 !important;">
+
+    <header class="article-header gh-canvas">
+
+        {{#if primary_tag}}
+        <section class="article-tag">
+            <a>{{primary_tag.name}}</a>
+        </section>
+        {{/if}}
+
+        <h1 class="article-title">{{title}}</h1>
+
+        {{#if custom_excerpt}}
+        <p class="article-excerpt">{{custom_excerpt}}</p>
+        {{/if}}
+
+        
+
+        {{#if feature_image}}
+        <figure class="article-image">
+            {{!-- This is a responsive image, it loads different sizes depending on device
+            https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+            <img
+                srcset="{{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 600w,
+                        {{img_url feature_image size="l"}} 1000w,
+                        {{img_url feature_image size="xl"}} 2000w"
+                sizes="(min-width: 1400px) 1400px, 92vw"
+                src="{{img_url feature_image size="xl"}}"
+                alt="{{title}}"
+            />
+        </figure>
+        {{/if}}
+    </header>
+
+    <section class="gh-content gh-canvas" style="margin-bottom: 50px;">
+        {{content}}
+    </section>
+    <center>
+        <section class="wow asec fadeIn" style="position: relative!important;
+    background-size: cover!important;
+    overflow: hidden!important;
+    background-position: center!important;
+    background-repeat: no-repeat!important; padding: 50px 0;background: #0064a4; visibility: visible; animation-name: fadeIn;">  <div class="container" style="font-size: 20px;"> <div class="row"> <div class="col-12 text-center"> <p>
+  <i style="color: white;">
+    Need help? Our coaches are here to perfect your answers and maximize your chance of success.
+  </i>
+</p>
+<p>
+  <i style="color: white;">
+    <a style="color: white; !important" href="" id="post-book-now">Book a free intro</a> with us now and we'll be happy to help you!
+ </i>
+</p><br/> <a class="gh-head-button" id="calendyButton1" style="    display: inline-block;
+    border: 2px solid transparent;
+    letter-spacing: .5px;
+    line-height: inherit;
+    border-radius: 0;
+    text-transform: uppercase;
+    width: auto;
+    font-family: Montserrat,sans-serif;
+    font-weight: 600;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+    white-space: nowrap;    font-size: 11px;
+    padding: 4px 24px;    background: #fff;
+    border-color: #fff;
+    color: #232323;     vertical-align: top!important;" class="btn btn-white btn-small align-top sm-no-margin-right">Book Now</a> </div> </div> </div> <div class="bg-extra-dark-gray" style="background-color: #1c1c1c;
+    height: 100%;
+    width: 100%;
+    opacity: .75;
+    top: 0;
+    left: 0;"></div> </section>
+    </center>
+ 
+    {{!--
+    <section class="article-comments gh-canvas">
+        If you want to embed comments, this is a good place to paste your code!
+    </section>
+    --}}
+
+</article>
+
+
+{{!-- Read more links, just above the footer --}}
+<aside class="read-more-wrap">
+    <div class="read-more inner">
+
+        {{!-- The {#get} helper below fetches some of the latest posts here
+        so that people have something else to read when they finish this one.
+
+        This query gets the latest 3 posts on the site, but adds a filter to
+        exclude the post we're currently on from being included. --}}
+
+        {{#get "posts" filter="id:-{{id}}" include="authors" limit="5" as |more_posts|}}
+            {{#if more_posts}}
+                {{#foreach more_posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+            {{/if}}
+        {{/get}}
+
+    </div>
+</aside>
+
+<style>@media (max-width: 767px) {
+.asec {
+    padding: 25px 0 !important;
+}}
+@media (min-width: 767px) and (max-width: 991px){
+.asec {
+    padding: 40px 0 !important;
+}}
+@media (max-width: 767px) {
+.weall1 {
+    display: inline-block!important;
+}}
+</style>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+<script>
+    var calendyButton1 = document.getElementById('calendyButton1');
+        calendyButton1.addEventListener("click", function() {
+            Calendly.initPopupWidget({ url: 'https://calendly.com/dellacorte/15min' });
+     return false;
+     })
+</script>
+
+{{/post}}
